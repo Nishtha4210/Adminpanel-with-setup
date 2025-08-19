@@ -1,0 +1,42 @@
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" style="background: var(--white); border-top: 1px solid var(--gray-200); padding: var(--space-lg) 0; margin-top: auto;">
+    <div class="container">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md);">
+        <div class="text-center text-sm" style="color: var(--gray-600);">
+          © <script>document.write(new Date().getFullYear())</script> Blog Admin Panel
+        </div>
+        <div style="display: flex; gap: var(--space-md);">
+          <a href="#" style="color: var(--gray-600); text-decoration: none; font-size: 0.875rem;">Privacy</a>
+          <a href="#" style="color: var(--gray-600); text-decoration: none; font-size: 0.875rem;">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Flash message handling -->
+  <script>
+    // Check for flash messages and display them using the new toast system
+    <% if (typeof flash !== 'undefined' && flash) { %>
+      <% if (flash.success && flash.success.length > 0) { %>
+        <% flash.success.forEach(function (message) { %>
+          if (window.AppUtils && window.AppUtils.toast) {
+            window.AppUtils.toast.show('<%= message %>', 'success');
+          }
+        <% }); %>
+      <% } %>
+      
+      <% if (flash.error && flash.error.length > 0) { %>
+        <% flash.error.forEach(function (message) { %>
+          if (window.AppUtils && window.AppUtils.toast) {
+            window.AppUtils.toast.show('<%= message %>', 'danger');
+          }
+        <% }); %>
+      <% } %>
+    <% } %>
+  </script>
+
+</body>
+</html>

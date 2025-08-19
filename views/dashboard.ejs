@@ -1,0 +1,104 @@
+<%-include ('header')%>
+
+<div class="container" style="background-color:#fdf9ff; border-radius: 8px; margin-top: 10px; padding-bottom: 5px;">
+  <div class="grid grid-cols-1" style="gap: var(--space-xl); font-family: Georgia, 'Times New Roman', Times, serif;">
+    <div>
+      <p style="color: #040404; font-size:large; font-family: Georgia, 'Times New Roman', Times, serif;">Overview of your business performance</p>
+    </div>
+
+    <div class="grid grid-cols-3">
+      <div class="card">
+        <div class="card-body">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-lg);">
+            <div>
+              <div style="color: var(--gray-600); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Admins</div>
+              <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary);">
+                <%= stats && stats.adminCount !== undefined ? stats.adminCount : '-' %>
+              </div>
+            </div>
+            <span data-icon="admin" data-icon-size="48" style="color: var(--primary-light);"></span>
+          </div>
+          <div style="display: flex; gap: var(--space-sm);">
+            <a href="/admin/add-admin" class="btn btn-primary btn-sm">Add Admin</a>
+            <a href="/admin/view-admin" class="btn btn-outline btn-outline-primary btn-sm">View Admins</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-lg);">
+            <div>
+              <div style="color: var(--gray-600); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Categories</div>
+              <div style="font-size: 2.5rem; font-weight: 700; color: var(--success);">
+                <%= stats && stats.categoryCount !== undefined ? stats.categoryCount : '-' %>
+              </div>
+            </div>
+            <span data-icon="category" data-icon-size="48" style="color: var(--success);"></span>
+          </div>
+          <div style="display: flex; gap: var(--space-sm);">
+            <a href="/category/add-category" class="btn btn-primary btn-sm">Add Category</a>
+            <a href="/category/view-category" class="btn btn-outline btn-outline-primary btn-sm">View Categories</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-lg);">
+            <div>
+              <div style="color: var(--gray-600); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Blogs</div>
+              <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent);">
+                <%= stats && stats.blogCount !== undefined ? stats.blogCount : '-' %>
+              </div>
+            </div>
+            <span data-icon="blog" data-icon-size="48" style="color: var(--accent);"></span>
+          </div>
+          <div style="display: flex; gap: var(--space-sm);">
+            <a href="/blog/add-blog" class="btn btn-primary btn-sm">Add Blog</a>
+            <a href="/blog/view-blog" class="btn btn-outline btn-outline-primary btn-sm">View Blogs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="card">
+      <div class="card-body">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md);">
+          <h4 style="margin: 0;">Quick Actions</h4>
+          <div style="display: flex; gap: var(--space-sm);">
+            <a href="/admin/add-admin" class="btn btn-secondary btn-sm">
+              <span data-icon="add" data-icon-size="16"></span>
+              <span>Create Admin</span>
+            </a>
+            <a href="/category/add-category" class="btn btn-secondary btn-sm">
+              <span data-icon="add" data-icon-size="16"></span>
+              <span>New Category</span>
+            </a>
+            <a href="/blog/add-blog" class="btn btn-secondary btn-sm">
+              <span data-icon="add" data-icon-size="16"></span>
+              <span>Write Blog</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 3px;">
+      <div class="card-body">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md);">
+          <h4 style="margin: 0;">Recent Actions in bloging</h4>
+          <div style="display: flex; gap: var(--space-sm);">
+            <a href="/blog/add-blog" class="btn btn-secondary btn-sm">
+              <span data-icon="add" data-icon-size="16"></span>
+              <span>Write your own Blog</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<%-include ('footer')%>

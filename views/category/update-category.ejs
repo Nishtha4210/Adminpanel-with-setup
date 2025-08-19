@@ -1,0 +1,27 @@
+<%- include('../header') -%>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Update Category</h2>
+            </div>
+            <div class="card-body">
+                <form action="/category/update-category-data" method="post">
+                    <input type="hidden" name="id" value="<%= category._id %>">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Category Name</label>
+                        <input type="text" id="name" name="name" class="form-control" value="<%= category.name %>"
+                            required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <span data-icon="edit" data-icon-size="18"></span>
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../footer') -%>

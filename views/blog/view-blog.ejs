@@ -1,0 +1,69 @@
+<%- include('../header') -%>
+
+            <div class="container-fluid py-2">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6 class="m-0">View Blogs</h6>
+                            <input type="text" id="blogSearch" class="form-control" placeholder="Search blogs..." style="max-width: 260px;">
+                        </div>
+                        <div class="card my-3">
+                            <div class="card-body px-0 pb-0">
+                                <div class="table-responsive p-0">
+                                    <table class="table align-items-center mb-0" id="adminBlogTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Blog Post</th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Image</th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Author</th>
+                                                <th class="text-secondary opacity-7"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% blogs.forEach(blog=> { %>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex px-2 py-1">
+                                                            <div class="d-flex flex-column justify-content-center">
+                                                                <h6 class="mb-0 text-sm">
+                                                                    <%= blog.title %>
+                                                                </h6>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <img src="<%= blog.blogImage %>" alt="Blog Image" height="50" width="50">
+                                                    </td>
+                                                    <td>
+                                                        <p class="text-xs font-weight-bold mb-0">
+                                                            <%= blog.authorName %>
+                                                        </p>
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <a href="/blog/update-blog/<%= blog.id %>" class="text-secondary font-weight-bold text-xs">Update</a>
+                                                        <a href="/blog/delete-blog/<%= blog.id %>" class="text-danger font-weight-bold text-xs ms-2">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            <% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <%- include('../footer') -%>
+
+<script>
+  const input = document.getElementById('blogSearch');
+  const rows = Array.from(document.querySelectorAll('#adminBlogTable tbody tr'));
+  input?.addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase();
+    rows.forEach(tr => {
+      const text = tr.innerText.toLowerCase();
+      tr.style.display = text.includes(q) ? '' : 'none';
+    });
+  });
+</script>

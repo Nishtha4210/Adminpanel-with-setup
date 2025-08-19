@@ -1,0 +1,77 @@
+<%- include('../header') -%>
+
+            <div class="container-fluid py-2">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card my-3 p-3">
+                            <h5 class="mb-3">Update Admin</h5>
+                            <form action="/admin/updateAdminData" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="adminId" value="<%= oldAdminData.id %>">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Admin ID</label>
+                                        <input type="text" name="adminId" class="form-control" value="<%= oldAdminData.adminId %>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">First Name</label>
+                                        <input type="text" name="firstName" class="form-control" value="<%= oldAdminData.firstName %>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Last Name</label>
+                                        <input type="text" name="lastName" class="form-control" value="<%= oldAdminData.lastName %>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" name="email" class="form-control" value="<%= oldAdminData.email %>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Contact Number</label>
+                                        <input type="text" name="contactNumber" class="form-control" value="<%= oldAdminData.contactNumber %>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label d-block">Gender</label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="male" value="Male" <%=oldAdminData.gender=='Male' ? 'checked' : '' %>>
+                                            <label class="form-check-label" for="male">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="female" value="Female" <%=oldAdminData.gender=='Female' ? 'checked' : '' %>>
+                                            <label class="form-check-label" for="female">Female</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label d-block">Hobby</label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="hobby" id="reading" value="Reading" <%=oldAdminData.hobby.includes('Reading') ? 'checked' : '' %>>
+                                            <label class="form-check-label" for="reading">Reading</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="hobby" id="travelling" value="Travelling" <%=oldAdminData.hobby.includes('Travelling') ? 'checked' : '' %>>
+                                            <label class="form-check-label" for="travelling">Travelling</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="hobby" id="music" value="Music" <%=oldAdminData.hobby.includes('Music') ? 'checked' : '' %>>
+                                            <label class="form-check-label" for="music">Music</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="hobby" id="surfing" value="Surfing" <%=oldAdminData.hobby.includes('Surfing') ? 'checked' : '' %>>
+                                            <label class="form-check-label" for="surfing">Surfing</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Description</label>
+                                        <textarea name="description" class="form-control" rows="3"><%= oldAdminData.description %></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Profile Image</label>
+                                        <input type="file" name="profileImage" class="form-control">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 mt-3">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <%- include('../footer') -%>

@@ -1,0 +1,23 @@
+<%- include('../header') -%>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Add New Category</h2>
+            </div>
+            <div class="card-body">
+                <form action="/category/insert-category-data" method="post">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Category Name</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter category name"
+                            required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">Create Category</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../footer') -%>

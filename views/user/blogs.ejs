@@ -1,0 +1,59 @@
+<%- include('./_head', { title: 'Blogs' }) %>
+  <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+    <h3 class="m-0" style="color: beige;">All Blogs</h3>
+    <input type="text" id="blogSearch" class="form-control" placeholder="Search blogs..." style="max-width:260px; background-color: rgb(247, 247, 184);">
+  </div>
+
+  <% if (blogs && blogs.length> 0) { %>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3" id="blogGrid">
+      <% blogs.forEach(function(blog) { %>
+        <div class="col blog-card-item">
+          <div class="card h-100 hover-up">
+            <% if (blog.blogImage) { %>
+              <img src="<%= blog.blogImage %>" class="card-img-top" alt="Blog Image"
+                style="height:180px; object-fit:cover;">
+              <% } %>
+                <div class="card-body d-flex flex-column">
+                  <a href="/user/blogs/<%= blog._id %>" class="stretched-link text-decoration-none text-light">
+                    <h5 class="card-title">
+                      <%= blog.title %>
+                    </h5>
+                  </a>
+                  <div class="text-muted-2 small mb-2">
+                    <span><i class="material-symbols-rounded"
+                        style="font-size:16px; vertical-align:middle;">category</i>
+                      <%= blog.category ? blog.category.name : 'Uncategorized' %>
+                    </span>
+                    · <span><i class="material-symbols-rounded" style="font-size:16px; vertical-align:middle;">event</i>
+                      <%= new Date(blog.createdAt).toLocaleDateString() %>
+                    </span>
+                    · <span><i class="material-symbols-rounded"
+                        style="font-size:16px; vertical-align:middle;">person</i>
+                      <%= blog.author ? blog.author.name : blog.authorName %>
+                    </span>
+                  </div>
+                  <p class="card-text text-truncate"
+                    style=" display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">
+                    <%= blog.content %>
+                  </p>
+                </div>
+          </div>
+        </div>
+        <% }); %>
+    </div>
+    <% } else { %>
+      <div class="text-center text-muted-2 py-5" style="color: beige;">No blogs found here....make your own blog</div>
+      <% } %>
+
+        <script>
+          const search = document.getElementById('blogSearch');
+          const items = Array.from(document.querySelectorAll('.blog-card-item'));
+          search?.addEventListener('input', (e) => {
+            const q = e.target.value.toLowerCase();
+            items.forEach(card => {
+              const text = card.innerText.toLowerCase();
+              card.style.display = text.includes(q) ? '' : 'none';
+            });
+          });
+        </script>
+        <%- include('./_foot') %>

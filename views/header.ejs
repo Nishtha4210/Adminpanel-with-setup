@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <title>
+    Argon Admin Panel
+  </title>
+  <link href="/assets/css/app.css" rel="stylesheet" />
+  <script src="/assets/js/icons.js"></script>
+  <script src="/assets/js/app.js"></script>
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="app-sidenav" style="background-color: #1f123a;">
+      <div class="sidebar-header">
+        <h4 class="" style="color: bisque; margin-top: 7px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Argon Admin Panel</h4>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-item">
+          <a class="sidebar-link" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" href="/admin/dashboard">
+            <span data-icon="dashboard" data-icon-size="20"></span>
+            <span>Dashboard</span>
+          </a>
+        </div>
+
+        <div class="sidebar-item">
+          <a class="sidebar-link" href="#" onclick="toggleDropdown('adminMenu')">
+            <span data-icon="admin" data-icon-size="20"></span>
+            <span>Admin</span>
+            <span data-icon="arrowDown" data-icon-size="16"
+              style="margin-left: auto; transition: transform var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);"
+              id="adminArrow"></span>
+          </a>
+          <div class="dropdown" id="adminMenu">
+            <a class="sidebar-link" href="/admin/add-admin">
+              <span data-icon="add" data-icon-size="18"></span>
+              <span>Add Admin</span>
+            </a>
+            <a class="sidebar-link" href="/admin/view-admin">
+              <span data-icon="table" data-icon-size="18"></span>
+              <span>View Admin</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="sidebar-item">
+          <a class="sidebar-link" href="#" onclick="toggleDropdown('categoryMenu')">
+            <span data-icon="category" data-icon-size="20"></span>
+            <span>Category</span>
+            <span data-icon="arrowDown" data-icon-size="16"
+              style="margin-left: auto; transition: transform var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);"
+              id="categoryArrow"></span>
+          </a>
+          <div class="dropdown" id="categoryMenu">
+            <a class="sidebar-link" href="/category/add-category">
+              <span data-icon="add" data-icon-size="18"></span>
+              <span>Add Category</span>
+            </a>
+            <a class="sidebar-link" href="/category/view-category">
+              <span data-icon="table" data-icon-size="18"></span>
+              <span>View Category</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="sidebar-item">
+          <a class="sidebar-link" href="#" onclick="toggleDropdown('blogMenu')">
+            <span data-icon="blog" data-icon-size="20"></span>
+            <span>Blog</span>
+            <span data-icon="arrowDown" data-icon-size="16"
+              style="margin-left: auto; transition: transform var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);"
+              id="blogArrow"></span>
+          </a>
+          <div class="dropdown" id="blogMenu">
+            <a class="sidebar-link" href="/blog/add-blog">
+              <span data-icon="add" data-icon-size="18"></span>
+              <span>Add Blog</span>
+            </a>
+            <a class="sidebar-link" href="/blog/view-blog">
+              <span data-icon="table" data-icon-size="18"></span>
+              <span>View Blog</span>
+            </a>
+          </div>
+        </div>
+
+        <hr style="border-color: var(--gray-200); margin: var(--space-lg) 0;" />
+
+        <% if (typeof user !=='undefined' && user) { %>
+          <div class="sidebar-item">
+            <a class="sidebar-link logout-link" href="/admin/logout" style="color: var(--danger); font-weight: bold;">
+              <span data-icon="logout" data-icon-size="20"></span>
+              <span>Logout</span>
+            </a>
+          </div>
+          <% } else { %>
+            <div class="sidebar-item">
+              <a class="sidebar-link" href="/login">
+                <span data-icon="login" data-icon-size="20"></span>
+                <span>Logout</span>
+              </a>
+            </div>
+            <% } %>
+      </nav>
+    </aside>
+
+    <main class="app-main">
+      <div class="navbar" style="background-color: #201140 ; border-radius: 5px;">
+        <div class="container">
+          <div style="display: flex; align-items: center; justify-content: space-between; ">
+            <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+              <span data-icon="menu" data-icon-size="24"></span>
+            </button>
+            <h4 class="navbar-brand" style="font-family:Georgia, 'Times New Roman', Times, serif; color: bisque;">~Dashboard </h4>
+            <div style="max-width: 300px; width: 100%; padding-left: 10px;">
+              <input class="form-control" type="search" placeholder="Search..." aria-label="Search">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        function toggleDropdown(menuId) {
+          const dropdown = document.getElementById(menuId);
+          const arrow = document.getElementById(menuId.replace('Menu', 'Arrow'));
+
+          document.querySelectorAll('.dropdown').forEach(d => {
+            if (d.id !== menuId) {
+              d.classList.remove('open');
+              const otherArrow = document.getElementById(d.id.replace('Menu', 'Arrow'));
+              if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
+            }
+          });
+
+          const willOpen = !dropdown.classList.contains('open');
+          dropdown.classList.toggle('open', willOpen);
+          if (arrow) arrow.style.transform = willOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        document.addEventListener('click', function (event) {
+          if (!event.target.closest('.sidebar-item')) {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+              dropdown.classList.remove('open');
+              const arrow = document.getElementById(dropdown.id.replace('Menu', 'Arrow'));
+              if (arrow) arrow.style.transform = 'rotate(0deg)';
+            });
+          }
+        });
+
+        function toggleSidebar() {
+          const sidebar = document.querySelector('.app-sidenav');
+          sidebar.classList.toggle('open');
+        }
+
+        document.addEventListener('click', function (event) {
+          const sidebar = document.querySelector('.app-sidenav');
+          const mobileToggle = document.querySelector('.mobile-menu-toggle');
+
+          if (window.innerWidth <= 1024 &&
+            !sidebar.contains(event.target) &&
+            !mobileToggle.contains(event.target)) {
+            sidebar.classList.remove('open');
+          }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+          const currentPath = window.location.pathname;
+
+          document.querySelectorAll('.sidebar-link').forEach(link => {
+            const linkPath = new URL(link.href, window.location.origin).pathname;
+
+            if (linkPath === currentPath) {
+              link.classList.add('active');
+
+              const dropdown = link.closest('.dropdown');
+              if (dropdown) {
+                dropdown.classList.add('open');
+
+                const arrow = document.getElementById(dropdown.id.replace('Menu', 'Arrow'));
+                if (arrow) arrow.style.transform = 'rotate(180deg)';
+              }
+            }
+          });
+        });
+      </script>

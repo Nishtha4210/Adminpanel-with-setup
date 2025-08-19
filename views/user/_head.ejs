@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= typeof title !=='undefined' ? title : 'Blog' %>
+  </title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+  <link href="/assets/css/app.css" rel="stylesheet" />
+</head>
+
+<body class="surface" style="min-height:100vh;">
+  <nav class="surface"
+    style="background: var(--c-surface); padding:12px 0; box-shadow: var(--shadow); border-radius: 0;">
+    <div
+      style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 12px;">
+      <a class="text-decoration-none" href="/user/blogs" style="color:#faf1f1;font-weight:700;">Argon Admin Blog</a>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <button><a class="text-decoration-none" href="/user/blogs" style="color: #faf1f1; background:#312d2d;font-weight:700; padding:15px; border-radius: 5px; border: 2px solid rgb(252, 248, 248)" >Blogs</a></button>
+        <button><a class="text-decoration-none" href="/user/login" style="color: #faf1f1; background:#312d2d;font-weight:700; padding: 15px; border-radius: 5px;  border: 2px solid rgb(252, 248, 248)">User Login</a></button>
+        <button><a class="text-decoration-none" href="/user/register" style="color:#faf1f1; background:#312d2d;font-weight:700; padding: 15px; border-radius: 5px;  border: 2px solid rgb(252, 248, 248)">Register</a></button>
+      </div>
+    </div>
+  </nav>
+  <main style="max-width:1100px;margin:0 auto;padding:16px;">
